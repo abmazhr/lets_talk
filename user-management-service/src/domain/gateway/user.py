@@ -3,7 +3,7 @@ from typing import Union
 
 from src.domain.entity.error import Error
 from src.domain.entity.success import Success
-from src.domain.gateway.database_repository import DatabaseRepository
+from src.domain.gateway.user_database_repository import DatabaseRepository
 
 
 class CreateUser(metaclass=ABCMeta):
