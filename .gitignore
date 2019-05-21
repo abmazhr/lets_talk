@@ -1,0 +1,5 @@
+*.odg
+user-management-service/venv
+user-management-service/.idea
+user-management-service/.vscode
+user-management-service/.mypy_cache
