@@ -3,3 +3,9 @@ user-management-service/venv
 user-management-service/.idea
 user-management-service/.vscode
 user-management-service/.mypy_cache
+cov.xml
+cov_html
+.coverage
+pytest_cache
+**/*.pyc
+*.idea
