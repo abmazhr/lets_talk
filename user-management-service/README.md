@@ -12,10 +12,8 @@ This service is responsible of doing user logic like registrations
 * simple flask rest-api implementation     (Plugins as needed to be changed)
 
 # Usage
-* `$ ./install_packages_dev.sh` or `$ sh install_packages_dev.sh`      # For installing dev requirements
-* `$ ./install_packages_prod.sh` or `$ sh install_packages_prod.sh`    # For installing prod requirements
-* `$ ./run_tests.sh` or `$ sh run_tests.sh`                            # For running tests
-* `$ ./run_service.sh` or `$ sh run_service.sh`                        # For running service
+* `$ make`      # For all the possible commands currently available for the project
+![current_make_list](current_make_list.png)
 
 ### Example post request
 * [http](https://httpie.org/) tool
