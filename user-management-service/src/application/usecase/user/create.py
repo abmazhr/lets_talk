@@ -35,17 +35,20 @@ class CreateUserUseCase(CreateUser):
 
     def __validate_data(self, *, data: Dict[str, Any]) -> Union[Error, Success]:
         # simple validation, may be replaced with json validator later :)
-        if data.get('name', None) is None:
-            return Error(reason="Not valid name")
-        if data.get('name', '') == '':
-            return Error(reason="Not valid name")
-        if data.get('password', '') == '':
-            return Error(reason="Not valid password")
-        try:
-            if int(data.get('age', -1)) == -1 or int(data.get('age', -1)) < 18:  # 18 for adult :D
-                return Error(reason="Not valid age")
-        except ValueError:
-            return Error(reason="Not valid age type")
-        # maybe later should validate email as well properly, now we will take it as it is even none
+        if data:
+            if data.get('name', None) is None:
+                return Error(reason="Not valid name")
+            if data.get('name', '') == '':
+                return Error(reason="Not valid name")
+            if data.get('password', '') == '':
+                return Error(reason="Not valid password")
+            try:
+                if int(data.get('age', -1)) == -1 or int(data.get('age', -1)) < 18:  # 18 for adult :D
+                    return Error(reason="Not valid age")
+            except ValueError:
+                return Error(reason="Not valid age type")
+            # maybe later should validate email as well properly, now we will take it as it is even none
 
-        return Success(data=None)
+            return Success(data=None)
+        else:
+            return Error(reason="Not valid data")
