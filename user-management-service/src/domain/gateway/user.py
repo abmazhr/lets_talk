@@ -1,14 +1,14 @@
 from abc import ABCMeta, abstractmethod
-from typing import Union
+from typing import Union, Any, Dict
 
 from src.domain.entity.error import Error
-from src.domain.entity.success import Success
-from src.domain.gateway.user_database_repository import DatabaseRepository
+from src.domain.entity.user import User
+from src.domain.gateway.user_database_repository import UserDatabaseRepository
 
 
 class CreateUser(metaclass=ABCMeta):
     @abstractmethod
-    def __init__(self, db_repository: DatabaseRepository) -> None: pass
+    def __init__(self, *, db_repository: UserDatabaseRepository) -> None: pass
 
     @abstractmethod
-    def execute(self) -> Union[Error, Success]: pass
+    def execute(self, *, data: Dict[str, Any]) -> Union[Error, User]: pass
