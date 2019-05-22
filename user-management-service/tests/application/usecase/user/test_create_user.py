@@ -27,6 +27,10 @@ def test_valid_create_user(create_user_usecase):
 
 
 def test_invalid_create_user(create_user_usecase):
+    data = dict()
+    created_user = create_user_usecase.execute(data=data)
+    assert created_user == Error(reason='Not valid data')
+
     data = dict(password='test', age=25)
     created_user = create_user_usecase.execute(data=data)
     assert created_user == Error(reason='Not valid name')
