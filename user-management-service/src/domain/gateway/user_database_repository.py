@@ -6,9 +6,9 @@ from src.domain.entity.success import Success
 from src.domain.entity.user import User
 
 
-class DatabaseRepository(metaclass=ABCMeta):
+class UserDatabaseRepository(metaclass=ABCMeta):
     @abstractmethod
-    def __init__(self, configs: Dict[str, str] = None) -> None: pass
+    def __init__(self, *, configs: Dict[str, str] = None) -> None: pass
 
     @abstractmethod
     def save_user(self, *, user: User) -> Union[Error, Success]: pass
