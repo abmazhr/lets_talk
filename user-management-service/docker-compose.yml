@@ -1,0 +1,23 @@
+version: '3'
+services:
+  rest-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - web
+
+  nginx:
+    image: "nginx:stable-alpine"
+    ports:
+      - "8080:80"
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    depends_on: 
+      - rest-api
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge

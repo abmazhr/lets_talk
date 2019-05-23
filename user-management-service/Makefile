@@ -47,8 +47,8 @@ run-tests: ## Running test suite and generate coverage report
 build-docker-image: ## Building docker image for the service
 	@docker build --rm -f "Dockerfile" -t user-management-service:latest .
 
-run-docker-container: ## Running docker container on service port specified
-	@docker run -d --rm --name "user-management-service" -p 3000:3000 user-management-service:latest
+run-docker-container: ## Running docker container on service port specified (scale factor of 5 instances as just number)
+	@docker-compose up -d --scale rest-api=5
 
 stop-docker-container: ## Stopping docker container of the service
-	@docker rm 'user-management-service' -f
+	@docker-compose down
