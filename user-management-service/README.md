@@ -9,7 +9,7 @@ This service is responsible of doing user logic like registrations
 # Explanation
 
 - simple clean architecture implementation
-- simple in-memory database implementation (Plugins as needed to be changed)
+- simple ~~in-memory~~ mongo database implementation (Plugins as needed to be changed)
 - simple flask rest-api implementation (Plugins as needed to be changed)
 
 # Usage
@@ -26,6 +26,8 @@ This service is responsible of doing user logic like registrations
 
 # Todo
 
-- [ ] Implementing some sort of read database (postgresql maybe?) since with load-balancing we got different instances each with different in-memory database so data is not consisted, yet
+- [x] ~~Implementing some sort of read database (mongodb) since with load-balancing we got different instances each with different in-memory database so data is not consisted, yet~~
 - [ ] Adding configuration files to tweak service behaviours/preferences at runtime
+- [ ] Using environment variables to dynamically tweak service/infrastructure behaviours/preferences
+- [ ] Running tests inside docker containers (then we may test mongodb using the same way as well)
 - [ ] Adding auth/jwt mechanism if needed user communications later (better be)
