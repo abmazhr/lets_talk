@@ -1,5 +1,6 @@
 from os import getenv
 
+SERVICE_RUNTIME = getenv('SERVICE_RUNTIME', 'locally')
 SERVICE_PORT = int(getenv('SERVICE_PORT', 3000))
 SERVICE_HOST = getenv('SERVICE_HOST', '0.0.0.0')
 
