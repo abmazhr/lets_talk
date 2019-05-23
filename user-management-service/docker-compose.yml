@@ -4,6 +4,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    depends_on:
+      - mongodb
+    hostname: rest-api
+    networks:
+      - web
+
+  mongodb:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
+    hostname: mongodb
     networks:
       - web
 
@@ -13,7 +24,7 @@ services:
       - "8080:80"
     volumes:
       - ./conf.d:/etc/nginx/conf.d
-    depends_on: 
+    depends_on:
       - rest-api
     networks:
       - web

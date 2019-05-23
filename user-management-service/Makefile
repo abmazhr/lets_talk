@@ -48,7 +48,7 @@ build-docker-image: ## Building docker image for the service
 	@docker build --rm -f "Dockerfile" -t user-management-service:latest .
 
 run-docker-container: ## Running docker container on service port specified (scale factor of 5 instances as just number)
-	@docker-compose up -d --scale rest-api=5
+	@docker-compose up -d --build --scale rest-api=5
 
 stop-docker-container: ## Stopping docker container of the service
 	@docker-compose down
