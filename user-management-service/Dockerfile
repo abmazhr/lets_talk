@@ -2,6 +2,7 @@ FROM python:3.7.3-alpine3.9
 
 LABEL name="Abdulrahman" email="abmazhr@gmail.com"
 
+RUN apk add --no-cache libffi libffi-dev g++ make # for bcrypt package
 RUN pip3 install --upgrade pip
 
 ENV APP_PATH /usr/src/
