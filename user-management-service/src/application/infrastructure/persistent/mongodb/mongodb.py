@@ -14,8 +14,7 @@ class MongoUserDatabaseRepository(UserDatabaseRepository):
 
     def __init__(self, *, configs: Dict[str, str] = None) -> None:
         super().__init__(configs=configs)
-        self.__configs = configs
-        self.__db = MongoClient('mongodb', 27017).users_management
+        self.__db = MongoClient(configs.get('MONGODB_HOST'), configs.get('MONGODB_PORT')).users_management
         self.__models = Models(db=self.__db)
 
     def save_user(self, *, user: UserEntity) -> Union[Error, Success]:
