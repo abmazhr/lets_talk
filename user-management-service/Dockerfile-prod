@@ -12,8 +12,8 @@ ADD requirements/prod-requirements.txt $APP_PATH
 
 RUN pip3 install -r prod-requirements.txt
 
-COPY src $APP_PATH
+COPY src $APP_PATH/src
 
 EXPOSE 3000
 
-ENTRYPOINT ["sh", "-c", "python3.7 $APP_PATH/main.py"]
+ENTRYPOINT ["sh", "-c", "python3.7 $APP_PATH/src/main.py"]
