@@ -14,3 +14,4 @@ RUN pip3 install -r dev-requirements.txt
 
 COPY src $APP_PATH/src
 COPY tests $APP_PATH/tests
+ADD .coveragerc_container $APP_PATH/.coveragerc_container
