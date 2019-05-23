@@ -8,12 +8,9 @@ RUN pip3 install --upgrade pip
 ENV APP_PATH /usr/src/
 RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
-ADD requirements/prod-requirements.txt $APP_PATH
+ADD requirements/dev-requirements.txt $APP_PATH
 
-RUN pip3 install -r prod-requirements.txt
+RUN pip3 install -r dev-requirements.txt
 
-COPY src $APP_PATH
-
-EXPOSE 3000
-
-ENTRYPOINT ["sh", "-c", "python3.7 $APP_PATH/main.py"]
+COPY src $APP_PATH/src
+COPY tests $APP_PATH/tests

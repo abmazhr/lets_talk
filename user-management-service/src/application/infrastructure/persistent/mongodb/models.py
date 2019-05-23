@@ -16,6 +16,4 @@ class Models:
             class Meta:
                 collection = db.user
 
-        print(type(User))
-
         self.User = User

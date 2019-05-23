@@ -5,7 +5,7 @@ help:
 		| sort \
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-install-packages-dev: ## Install packages for the dev environment
+install-packages-dev-locally: ## Install packages for the dev environment [locally]
 	@echo -e "\e[1;34mcreating the virtual environment ...\e[0m" && \
 		python3 -m venv venv && \
 		echo -e "\e[1;34mactivating the virtual environment ...\e[0m" && \
@@ -13,7 +13,7 @@ install-packages-dev: ## Install packages for the dev environment
 		echo -e "\e[1;34minstalling project's requirements ...\e[0m" && \
 		pip install -U pip -r requirements/dev-requirements.txt
 
-install-packages-prod: ## Install packages for the prod environment
+install-packages-prod-locally: ## Install packages for the prod environment [locally]
 	@echo -e "\e[1;34mcreating the virtual environment ...\e[0m" && \
 		python3 -m venv venv && \
 		echo -e "\e[1;34mactivating the virtual environment ...\e[0m" && \
@@ -21,7 +21,7 @@ install-packages-prod: ## Install packages for the prod environment
 		echo -e "\e[1;34minstalling project's requirements ...\e[0m" && \
 		pip install -U pip -r requirements/prod-requirements.txt
 
-run-service: ## Running the service
+run-service-locally: ## Running the service [locally]
 	@echo -e "\e[1;34mactivating the virtual environment ...\e[0m" && \
 		source ./venv/bin/activate && \
 		echo -e "\e[1;34mredirecting to 'src' directory ...\e[0m" && \
@@ -29,12 +29,12 @@ run-service: ## Running the service
 		echo -e "\e[1;34mrunning service ...\e[0m" && \
 		python main.py
 
-run-tests: ## Running test suite and generate coverage report
+run-tests-locally: ## Running test suite [locally] and generate coverage report
 	@echo -e "\e[1;34mactivating the virtual environment ...\e[0m" && \
 		source ./venv/bin/activate && \
 		echo -e "\e[1;34mrunning 'pytest' with configs in '.coveragerc' file ...\e[0m" && \
 		py.test \
-			-vv \
+			-vvs \
 			--cov . tests \
 			--cov-report term-missing \
 			--cov-report html:cov_html \
@@ -44,11 +44,14 @@ run-tests: ## Running test suite and generate coverage report
 		rm -r ./.pytest_cache/ 2> /dev/null && \
 		rm ./.coverage 2> /dev/null
 
+run-tests-in-container: ## Running test suite [in-docker-container] and generate coverage report
+	@docker-compose run testing-environment && docker-compose down
+
 build-docker-image: ## Building docker image for the service
 	@docker build --rm -f "Dockerfile" -t user-management-service:latest .
 
-run-docker-container: ## Running docker container on service port specified (scale factor of 5 instances as just number)
+run-service-in-container: ## Running docker container on service port specified (scale factor of 5 instances as just number)
 	@docker-compose up -d --build --scale rest-api=5
 
-stop-docker-container: ## Stopping docker container of the service
+stop-service-in-container: ## Stopping docker container of the service
 	@docker-compose down
