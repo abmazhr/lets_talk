@@ -27,7 +27,7 @@ This service is responsible of doing user logic like registrations
 # Todo
 
 - [x] ~~Implementing some sort of read database (mongodb) since with load-balancing we got different instances each with different in-memory database so data is not consisted, yet~~
-- [ ] Adding configuration files to tweak service behaviours/preferences at runtime
-- [ ] Using environment variables to dynamically tweak service/infrastructure behaviours/preferences
+- [x] ~~Adding configuration files to tweak service behaviours/preferences at runtime~~
+- [x] ~~Using environment variables to dynamically tweak service/infrastructure behaviours/preferences~~
 - [ ] Running tests inside docker containers (then we may test mongodb using the same way as well)
 - [ ] Adding auth/jwt mechanism if needed user communications later (better be)
