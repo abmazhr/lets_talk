@@ -7,10 +7,11 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 def main() -> None:
     from src.application.infrastructure.web.rest_implementation.flask_api.api import get_api
     from src.application.usecase.user.create import CreateUserUseCase
-    from src.application.infrastructure.persistent.in_memory.in_memory import InMemoryUserDatabaseRepository
+    # from src.application.infrastructure.persistent.in_memory.in_memory import InMemoryUserDatabaseRepository
+    from src.application.infrastructure.persistent.mongodb.mongodb import MongoUserDatabaseRepository
 
     # dependency injection
-    db_repository = InMemoryUserDatabaseRepository()
+    db_repository = MongoUserDatabaseRepository()
     create_user_usecase = CreateUserUseCase(db_repository=db_repository)
 
     api = get_api(create_user_usecase=create_user_usecase)
