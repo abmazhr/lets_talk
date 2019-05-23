@@ -56,7 +56,6 @@ def test_invalid_create_user_exists_before(create_user_usecase):
     data = dict(name="Abdulrahman", password='test', age=25)
     _created_user = create_user_usecase.execute(data=data)
     created_again_user = create_user_usecase.execute(data=data)
-    testing_user = from_dict_to_user(data=data)
 
     assert created_again_user == Error(
         f'This username {data["name"]} does exist before, use different username please.')
