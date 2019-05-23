@@ -6,11 +6,17 @@ import pytest
 from src.application.infrastructure.persistent.mongodb.mongodb import MongoUserDatabaseRepository
 from src.application.usecase.user.create import CreateUserUseCase
 from src.configs import (
+    SERVICE_RUNTIME,
     MONGODB_HOST,
     MONGODB_PORT
 )
 from src.domain.entity.error import Error
 from tests.application.usecase.user.helper import from_dict_to_user
+
+skip_or_not = pytest.mark.skipif(
+    SERVICE_RUNTIME != 'container',
+    reason="locally will be testing on in-memory-database simply for now"
+)
 
 
 @pytest.fixture(scope='function')
@@ -25,6 +31,7 @@ def create_user_usecase():
     yield create_user_usecase
 
 
+@skip_or_not
 def test_valid_create_user(create_user_usecase):
     data = dict(name="Abdulrahman", password='test', age=25, email="abmazhr@gmail.com")
     created_user = create_user_usecase.execute(data=data)
@@ -40,6 +47,7 @@ def test_valid_create_user(create_user_usecase):
     assert created_user.email == testing_user.email
 
 
+@skip_or_not
 def test_invalid_create_user(create_user_usecase):
     data = dict()
     created_user = create_user_usecase.execute(data=data)
@@ -66,6 +74,7 @@ def test_invalid_create_user(create_user_usecase):
     assert created_user == Error(reason='Not valid password')
 
 
+@skip_or_not
 def test_invalid_create_user_exists_before(create_user_usecase):
     data = dict(name="Abdulrahman", password='test', age=25, email="abmazhr@gmail.com")
     _created_user = create_user_usecase.execute(data=data)
