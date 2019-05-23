@@ -12,11 +12,16 @@ def main() -> None:
         SERVICE_HOST,
         SERVICE_PORT,
         MONGODB_HOST,
-        MONGODB_PORT
+        MONGODB_PORT,
+        MONGODB_NAME
     )
 
     # dependency injection
-    db_repository = MongoUserDatabaseRepository(configs={'MONGODB_HOST': MONGODB_HOST, 'MONGODB_PORT': MONGODB_PORT})
+    db_repository = MongoUserDatabaseRepository(configs={
+        'MONGODB_HOST': MONGODB_HOST,
+        'MONGODB_PORT': MONGODB_PORT,
+        'MONGODB_NAME': MONGODB_NAME
+    })
     create_user_usecase = CreateUserUseCase(db_repository=db_repository)
 
     api = get_api(create_user_usecase=create_user_usecase)

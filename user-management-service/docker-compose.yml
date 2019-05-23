@@ -45,15 +45,20 @@ services:
       - |
           echo -e "\e[1;34mrunning 'pytest' with configs in '.coveragerc' file ...\e[0m" && \
                   py.test \
+                      -r s \
                       -vvs \
                       --cov . tests \
                       --cov-report term-missing \
                       --cov-report html:cov_html \
                       --cov-report xml:cov.xml \
-                      --cov-config .coveragerc && \
+                      --cov-config .coveragerc_container && \
                   echo -e "\e[1;34mcleaning directory ...\e[0m" && \
                   rm -r ./.pytest_cache/ 2> /dev/null && \
                   rm ./.coverage 2> /dev/null
+    environment:
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+      - SERVICE_RUNTIME=container
     networks:
       - web
 
