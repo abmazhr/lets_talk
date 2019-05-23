@@ -3,7 +3,7 @@
 .vscode
 cov_html
 venv
-.coveragerc
+.coveragerc_locally
 cov.xml
 *.sh
 README.md
