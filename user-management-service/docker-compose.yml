@@ -9,11 +9,14 @@ services:
     hostname: rest-api
     networks:
       - web
+    environment:
+      - SERVICE_HOST=0.0.0.0
+      - SERVICE_PORT=3000
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
 
   mongodb:
     image: "mongo:latest"
-    ports:
-      - "27017:27017"
     hostname: mongodb
     networks:
       - web
