@@ -32,26 +32,28 @@ run-service-locally: ## Running the service [locally]
 run-tests-locally: ## Running test suite [locally] and generate coverage report
 	@echo -e "\e[1;34mactivating the virtual environment ...\e[0m" && \
 		source ./venv/bin/activate && \
-		echo -e "\e[1;34mrunning 'pytest' with configs in '.coveragerc' file ...\e[0m" && \
+		echo -e "\e[1;34mrunning 'pytest' with configs in '.coveragerc_locally' file ...\e[0m" && \
 		py.test \
+			-r s \
 			-vvs \
 			--cov . tests \
 			--cov-report term-missing \
 			--cov-report html:cov_html \
 			--cov-report xml:cov.xml \
-			--cov-config .coveragerc && \
+			--cov-config .coveragerc_locally && \
 		echo -e "\e[1;34mcleaning directory ...\e[0m" && \
 		rm -r ./.pytest_cache/ 2> /dev/null && \
 		rm ./.coverage 2> /dev/null
 
 run-tests-in-container: ## Running test suite [in-docker-container] and generate coverage report
-	@docker-compose run testing-environment && docker-compose down
+	@docker-compose build testing-environment && docker-compose run testing-environment && docker-compose down
 
 build-docker-image: ## Building docker image for the service
 	@docker build --rm -f "Dockerfile" -t user-management-service:latest .
 
 run-service-in-container: ## Running docker container on service port specified (scale factor of 5 instances as just number)
-	@docker-compose up -d --build --scale rest-api=5
+	@docker-compose build rest-api mongodb nginx && \
+	 	docker-compose up -d --scale rest-api=5 mongodb nginx
 
 stop-service-in-container: ## Stopping docker container of the service
 	@docker-compose down
