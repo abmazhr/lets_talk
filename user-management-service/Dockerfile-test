@@ -1,0 +1,16 @@
+FROM python:3.7.3-alpine3.9
+
+LABEL name="Abdulrahman" email="abmazhr@gmail.com"
+
+RUN apk add --no-cache libffi libffi-dev g++ make # for bcrypt package
+RUN pip3 install --upgrade pip
+
+ENV APP_PATH /usr/src/
+RUN mkdir -p $APP_PATH
+WORKDIR $APP_PATH
+ADD requirements/dev-requirements.txt $APP_PATH
+
+RUN pip3 install -r dev-requirements.txt
+
+COPY src $APP_PATH/src
+COPY tests $APP_PATH/tests
