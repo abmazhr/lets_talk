@@ -13,9 +13,10 @@ This service is responsible of doing user logic like registrations
 - simple flask rest-api implementation (Plugins as needed to be changed)
 
 # Required tools to be installed
-- [docker](https://www.docker.com/)                    # as container-runtime
-- [docker-compose](https://docs.docker.com/compose/)   # as container-orchestration (replaced by kubernetes later?)
-- [make](https://www.gnu.org/software/make/)           # as building/scripting tool
+
+- [docker](https://www.docker.com/) # as container-runtime
+- [docker-compose](https://docs.docker.com/compose/) # as container-orchestration (replaced by kubernetes later?)
+- [make](https://www.gnu.org/software/make/) # as building/scripting tool
 
 # Usage
 
@@ -24,10 +25,16 @@ This service is responsible of doing user logic like registrations
 
 ### Example post request
 
-- [http](https://httpie.org/) tool
+- Locally
+  - [http](https://httpie.org/) tool
   - `$ http post :3000/users name='abdulrahman' age=25 password='test' email='abmazhr@gmail.com'`
-- [curl](https://curl.haxx.se) tool
+  - [curl](https://curl.haxx.se) tool
   - `$ curl -d '{"name":"abdulrahman", "age": 25, "password": "test", "email": "abmazhr@gmail.com"}' -H "Content-Type: application/json" -X POST http://localhost:3000/users`
+- Container
+  - [http](https://httpie.org/) tool
+  - `$ http post :8080/users name='abdulrahman' age=25 password='test' email='abmazhr@gmail.com'`
+  - [curl](https://curl.haxx.se) tool
+  - `$ curl -d '{"name":"abdulrahman", "age": 25, "password": "test", "email": "abmazhr@gmail.com"}' -H "Content-Type: application/json" -X POST http://localhost:8080/users`
 
 # Todo
 
