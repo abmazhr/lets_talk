@@ -42,4 +42,5 @@ This service is responsible of doing user logic like registrations
 - [x] ~~Adding configuration files to tweak service behaviours/preferences at runtime~~
 - [x] ~~Using environment variables to dynamically tweak service/infrastructure behaviours/preferences~~
 - [x] ~~Running tests inside docker containers (then we may test mongodb using the same way as well)~~
+- [ ] Adding environment variable to choose which database implementation want to run the service with
 - [ ] Adding auth/jwt mechanism if needed user communications later (better be)
