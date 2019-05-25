@@ -1,5 +1,7 @@
 from abc import ABCMeta, abstractmethod
-from typing import Dict, Any, NamedTuple
+from typing import Dict, Any, NamedTuple, Union
+
+from src.domain.entity.error import Error
 
 
 class Response(NamedTuple):
@@ -12,4 +14,4 @@ class HttpClient(metaclass=ABCMeta):
     def __init__(self, *, configs: Dict[str, Any]) -> None: pass
 
     @abstractmethod
-    def post(self, *, url: str, data: Dict[str, Any]) -> Response: pass
+    def post(self, *, url: str, data: Dict[str, Any]) -> Union[Error, Response]: pass
