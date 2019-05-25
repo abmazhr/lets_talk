@@ -45,7 +45,7 @@ class PostUser(UserRestApiGateway.Post):
             data=data
         )
         if isinstance(result, Error):
-            return jsonify(ValidityOfUserCredentials(valid=False)._asdict()), 400
+            return jsonify(ValidityOfUserCredentials(valid=False)._asdict()), 202
 
         if isinstance(result, Success):
             return jsonify(ValidityOfUserCredentials(valid=True)._asdict()), 202
