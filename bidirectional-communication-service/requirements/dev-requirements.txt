@@ -1,0 +1,6 @@
+autopep8==1.4.4
+dpcontracts==0.6.0
+flake8==3.7.7
+mypy==0.701
+pytest==4.5.0
+pytest-cov==2.7.1
