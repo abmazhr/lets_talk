@@ -1,0 +1,2 @@
+[run]
+omit = venv/*, tests/*, src/main.py, src/application/infrastructure/internal_services_communication
