@@ -44,4 +44,4 @@ def test_invalid_post_user(api):
         json_data: Dict[str, Any] = check_credentials_response.get_json()
 
         assert json_data['valid'] == False
-        assert check_credentials_response.status_code == 400
+        assert check_credentials_response.status_code == 202
