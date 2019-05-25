@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
-from typing import Union, Tuple, Dict, Any, NamedTuple
+from typing import Union, Tuple, Dict, Any, NamedTuple, Optional
 
+from src.application.usecase.user.check_creds import CheckUserCredentialsUseCase
 from src.application.usecase.user.create import CreateUserUseCase
 from src.domain.entity.error import Error
 from src.domain.entity.user import User
@@ -24,14 +25,24 @@ class UserJson(NamedTuple):
         )
 
 
+class ValidityOfUserCredentials(NamedTuple):
+    valid: bool
+
+
 Status = int
-PostResponse = Union[Tuple[Error, Status], Tuple[UserJson, Status]]
+UserRegistrationResponse = Union[Tuple[Error, Status], Tuple[UserJson, Status]]
+UserCheckCredentialsResponse = Tuple[ValidityOfUserCredentials, Status]
 
 
 class UserRestApiGateway:
     class Post(metaclass=ABCMeta):
         @abstractmethod
-        def __init__(self, *, create_user_usecase: CreateUserUseCase) -> None: pass
+        def __init__(self, *,
+                     create_user_usecase: Optional[CreateUserUseCase],
+                     check_user_credentials_usecase: Optional[CheckUserCredentialsUseCase]) -> None: pass
 
         @abstractmethod
-        def send_request(self, *, data: Dict[str, Any]) -> PostResponse: pass
+        def register_user(self, *, data: Dict[str, Any]) -> UserRegistrationResponse: pass
+
+        @abstractmethod
+        def check_user_credentials(self, *, data: Dict[str, Any]) -> UserCheckCredentialsResponse: pass
