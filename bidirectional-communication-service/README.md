@@ -9,18 +9,5 @@ bidirectional-communication-service is for bidirectional communications (real-ti
 # Explanation
 
 - simple clean architecture implementation
-- simple express with websockets implementation (Plugins as needed to be changed)
+- simple flask with websockets implementation (Plugins as needed to be changed)
 - simple in-memory persistence of online user's state and maybe redis later? (Plugins as needed to be changed)
-
-## Usage
-
-```shell
-# install deps
-npm install
-
-# run in development mode
-npm run dev
-
-# run tests
-npm run test
-```
