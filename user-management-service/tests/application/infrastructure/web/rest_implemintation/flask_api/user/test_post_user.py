@@ -4,6 +4,7 @@ import pytest
 
 from src.application.infrastructure.persistent.in_memory.in_memory import InMemoryUserDatabaseRepository
 from src.application.infrastructure.web.rest_implementation.flask_api.api import get_api
+from src.application.usecase.user.check_creds import CheckUserCredentialsUseCase
 from src.application.usecase.user.create import CreateUserUseCase
 
 
@@ -11,7 +12,11 @@ from src.application.usecase.user.create import CreateUserUseCase
 def api():
     db_repository = InMemoryUserDatabaseRepository()
     create_user_usecase = CreateUserUseCase(db_repository=db_repository)
-    api = get_api(create_user_usecase=create_user_usecase)
+    check_user_credentials_usecase = CheckUserCredentialsUseCase(db_repository=db_repository)
+    api = get_api(
+        create_user_usecase=create_user_usecase,
+        check_user_credentials_usecase=check_user_credentials_usecase
+    )
 
     yield api
 
