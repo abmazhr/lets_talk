@@ -1,4 +1,4 @@
-from typing import Union, Dict
+from typing import Union, Dict, Optional
 from uuid import uuid4
 
 from src.domain.entity.error import Error
@@ -26,6 +26,17 @@ class InMemoryUserDatabaseRepository(UserDatabaseRepository):
         )
         self.__db[user.name] = user
         return Success(data=user)
+
+    def check_user_credentials(self, *, username: str, password: str) -> Union[Error, Success]:
+        db_user: Optional[User] = self.__db.get(username, None)
+        if db_user is not None:
+            db_password = db_user.password
+            if password == db_password:
+                return Success(data=f"This user's '{username}' credentials are valid")
+
+            return Error(reason=f"This user's '{username}' credentials are not valid")
+
+        return Error(reason=f"User with username '{username}' does not exist")
 
     def __does_exist_before(self, *, user: User) -> bool:
         return self.__db.get(user.name, None) is not None

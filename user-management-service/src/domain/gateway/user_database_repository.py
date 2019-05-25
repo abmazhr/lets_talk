@@ -12,3 +12,6 @@ class UserDatabaseRepository(metaclass=ABCMeta):
 
     @abstractmethod
     def save_user(self, *, user: User) -> Union[Error, Success]: pass
+
+    @abstractmethod
+    def check_user_credentials(self, *, username: str, password: str) -> Union[Error, Success]: pass
