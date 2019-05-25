@@ -27,14 +27,18 @@ This service is responsible of doing user logic like registrations
 
 - Locally
   - [http](https://httpie.org/) tool
-  - `$ http post :3000/users name='abdulrahman' age=25 password='test' email='abmazhr@gmail.com'`
+  - `$ http post :3000/users name='abdulrahman' age=25 password='test' email='abmazhr@gmail.com'` # register-user
+  - `$ http post :3000/users/check_credentials username='abdulrahman' password='test'` # check-user-credentials
   - [curl](https://curl.haxx.se) tool
-  - `$ curl -d '{"name":"abdulrahman", "age": 25, "password": "test", "email": "abmazhr@gmail.com"}' -H "Content-Type: application/json" -X POST http://localhost:3000/users`
+  - `$ curl -d '{"name":"abdulrahman", "age": 25, "password": "test", "email": "abmazhr@gmail.com"}' -H "Content-Type: application/json" -X POST http://localhost:3000/users` # register-user
+  - `$ curl -d '{"username":"abdulrahman", "password": "test"}' -H "Content-Type: application/json" -X POST http://localhost:3000/users/check_credentials` # check-user-credentials
 - Container
   - [http](https://httpie.org/) tool
-  - `$ http post :8080/users name='abdulrahman' age=25 password='test' email='abmazhr@gmail.com'`
+  - `$ http post :8080/users name='abdulrahman' age=25 password='test' email='abmazhr@gmail.com'` # register-user
+  - `$ http post :8080/users/check_credentials username='abdulrahman' password='test'` # check-user-credentials
   - [curl](https://curl.haxx.se) tool
-  - `$ curl -d '{"name":"abdulrahman", "age": 25, "password": "test", "email": "abmazhr@gmail.com"}' -H "Content-Type: application/json" -X POST http://localhost:8080/users`
+  - `$ curl -d '{"name":"abdulrahman", "age": 25, "password": "test", "email": "abmazhr@gmail.com"}' -H "Content-Type: application/json" -X POST http://localhost:8080/users` # register-user
+  - `$ curl -d '{"username":"abdulrahman", "password": "test"}' -H "Content-Type: application/json" -X POST http://localhost:8080/users/check_credentials` # check-user-credentials
 
 # Todo
 
