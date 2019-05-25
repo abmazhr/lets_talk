@@ -3,6 +3,7 @@ user-management-service/venv
 user-management-service/.idea
 user-management-service/.vscode
 user-management-service/.mypy_cache
+bidirectional-communication-service_ts
 cov.xml
 cov_html
 .coverage
