@@ -11,7 +11,7 @@ class Response(NamedTuple):
 
 class HttpClient(metaclass=ABCMeta):
     @abstractmethod
-    def __init__(self, *, configs: Dict[str, Any]) -> None: pass
+    def __init__(self, *, configs: Dict[str, Any] = None) -> None: pass
 
     @abstractmethod
     def post(self, *, url: str, data: Dict[str, Any]) -> Union[Error, Response]: pass
