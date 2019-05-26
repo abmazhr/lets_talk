@@ -9,18 +9,19 @@ bidirectional-communication-service is for bidirectional communications (real-ti
 # Explanation
 
 - simple clean architecture implementation
-- simple express with websockets implementation (Plugins as needed to be changed)
+- simple flask with websockets implementation (Plugins as needed to be changed)
 - simple in-memory persistence of online user's state and maybe redis later? (Plugins as needed to be changed)
 
-## Usage
+# Required tools to be installed
 
-```shell
-# install deps
-npm install
+- [make](https://www.gnu.org/software/make/) # as building/scripting tool
 
-# run in development mode
-npm run dev
+# Usage
 
-# run tests
-npm run test
-```
+- `$ make` # For all the possible commands currently available for the project
+  ![current_make_list](current_make_list.png)
+
+### Example post request
+
+# Todo
+- [ ] Running tests inside docker containers (then we may test inter-services-communications using the same way as well)
