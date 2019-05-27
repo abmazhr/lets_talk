@@ -1,5 +1,5 @@
 from flask import request
-from flask_socketio import send, emit
+from flask_socketio import send, disconnect
 
 from src.application.infrastructure.web.sockets.gateway.base import BaseSockets
 from src.application.usecase.user.check_creds import CheckUserCredentialsUseCase
@@ -27,7 +27,7 @@ class FlaskBaseSockets(BaseSockets):
                 msg = f'Invalid credentials for user "{username}"'
                 print(msg)
                 send(msg)
-                emit('disconnect')
+                disconnect(sid=sid)
 
             if isinstance(check_creds_result, Success):
                 msg = f'{sid}:: Connected successfully !'
@@ -36,7 +36,7 @@ class FlaskBaseSockets(BaseSockets):
         else:
             msg = f'Invalid credentials data'
             send(msg)
-            emit('disconnect')
+            disconnect(sid=sid)
 
     def on_disconnect(self, *args, **kwargs) -> None:
         sid = request.sid
