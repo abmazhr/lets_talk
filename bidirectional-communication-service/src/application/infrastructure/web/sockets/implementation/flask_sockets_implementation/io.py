@@ -8,13 +8,15 @@ from src.application.infrastructure.web.sockets.implementation.flask_sockets_imp
     FlaskMessageSockets
 from src.application.usecase.user.add_online_user import AddOnlineUserUseCase
 from src.application.usecase.user.check_creds import CheckUserCredentialsUseCase
+from src.application.usecase.user.publish_online_user import PublishOnlineUserUseCase
 from src.application.usecase.user.remove_online_user import RemoveOnlineUserUseCase
 
 
 def get_io(*,
            check_user_creds_usecase: CheckUserCredentialsUseCase,
            add_online_user_usecase: AddOnlineUserUseCase,
-           remove_online_user_usecase: RemoveOnlineUserUseCase) -> Tuple[Flask, SocketIO]:
+           remove_online_user_usecase: RemoveOnlineUserUseCase,
+           publish_online_user_usecase: PublishOnlineUserUseCase) -> Tuple[Flask, SocketIO]:
     api = Flask(__name__)
     io = SocketIO(api)
 
@@ -22,7 +24,8 @@ def get_io(*,
     flask_base_sockets = FlaskBaseSockets(
         check_user_creds_usecase=check_user_creds_usecase,
         add_online_user_usecase=add_online_user_usecase,
-        remove_online_user_usecase=remove_online_user_usecase
+        remove_online_user_usecase=remove_online_user_usecase,
+        publish_online_user_usecase=publish_online_user_usecase
     )
 
     # register (maybe we will do it better later so it doesn't be messy right? :D
