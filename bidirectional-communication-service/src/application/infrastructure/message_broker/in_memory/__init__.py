@@ -7,7 +7,7 @@ from src.domain.gateway.message_broker import MessageBroker
 
 
 class InMemoryMessageBroker(MessageBroker):
-    def __init__(self, *, configs: Dict[str, Any]) -> None:
+    def __init__(self, *, configs: Dict[str, Any] = None) -> None:
         super().__init__(configs=configs)
         self.__broker = Queue()  # in memory ;)
 
