@@ -44,3 +44,13 @@ run-tests-locally: ## Running test suite [locally] and generate coverage report
 		echo -e "\e[1;34mcleaning directory ...\e[0m" && \
 		rm -r ./.pytest_cache/ 2> /dev/null && \
 		rm ./.coverage 2> /dev/null
+
+build-docker-image: ## Building docker image for the service
+	@docker build --rm -f "Dockerfile" -t bidirectional-communication-service:latest .
+
+run-service-in-container: ## Running docker container on service port specified (scale factor of 5 instances as just number)
+	@docker-compose build sockets-server nginx && \
+	 	docker-compose up -d --scale sockets-server=5 nginx
+
+stop-service-in-container: ## Stopping docker container of the service
+	@docker-compose down
