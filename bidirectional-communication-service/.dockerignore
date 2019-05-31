@@ -1,0 +1,13 @@
+.idea
+.mypy_cache
+.vscode
+cov_html
+venv
+.coveragerc_locally
+cov.xml
+*.sh
+README.md
+*.odg
+*.png
+**/*.pyc
+tests
