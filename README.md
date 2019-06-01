@@ -6,8 +6,8 @@ real-time chat app demonstrating some architectural, testing, readability, clean
 
 - user registration (username & password)
 - see all the system's online users
-- ability to send message (text) to any online user
-- notify immediately if a user got a message from another user (real-time communication)
+- ability to send message (text) to all online users
+- notify immediately when a new message come from another user(s) (real-time communication)
 - no persistence of messages for any user on the backend side
 
 # Current Desired Architecture State
@@ -17,6 +17,17 @@ real-time chat app demonstrating some architectural, testing, readability, clean
 # Current Architecture State
 
 ![current_architecture_diagram](current_architecture_diagram.png)
+
+# Required tools to be installed
+
+- [docker](https://www.docker.com/) # as container-runtime
+- [docker-compose](https://docs.docker.com/compose/) # as container-orchestration (replaced by kubernetes later?)
+- [make](https://www.gnu.org/software/make/) # as building/scripting tool
+
+# Usage
+
+- `$ make` # For all the possible commands currently available for the project
+  ![current_make_list](current_make_list.png)
 
 # Todo
 
