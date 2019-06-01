@@ -14,6 +14,8 @@ bidirectional-communication-service is for bidirectional communications (real-ti
 
 # Required tools to be installed
 
+- [docker](https://www.docker.com/) # as container-runtime
+- [docker-compose](https://docs.docker.com/compose/) # as container-orchestration (replaced by kubernetes later?)
 - [make](https://www.gnu.org/software/make/) # as building/scripting tool
 
 # Usage
