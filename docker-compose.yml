@@ -1,0 +1,58 @@
+version: '3'
+services:
+  rest-api:
+    build:
+      context: user-management-service
+      dockerfile: Dockerfile-prod
+    depends_on:
+      - mongodb
+    hostname: rest-api
+    networks:
+      - web
+    expose:
+      - 3000
+    environment:
+      - SERVICE_HOST=0.0.0.0
+      - SERVICE_PORT=3000
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+
+  sockets-server:
+    build:
+      context: bidirectional-communication-service
+      dockerfile: Dockerfile-prod
+    hostname: sockets-server
+    networks:
+      - web
+    expose:
+      - 3001
+    environment:
+      - SERVICE_HOST=0.0.0.0
+      - SERVICE_PORT=3001
+      - USER_MANAGEMENT_SERVICE_HOST=rest-api
+      - USER_MANAGEMENT_SERVICE_PORT=3000
+
+  mongodb:
+    image: "mongo:latest"
+    hostname: mongodb
+    networks:
+      - web
+
+  nginx:
+    image: "nginx:stable-alpine"
+    ports:
+      - "80:80"
+    links:
+      - rest-api
+      - sockets-server
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    depends_on:
+      - rest-api
+      - sockets-server
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge
