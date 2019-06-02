@@ -11,3 +11,7 @@ in this app will be using very simple codebase so no need to be doing it in 'oni
 - simple cli-client implementation
 - simple login functionalities (using user-management service behind the scene)
 - simple one to many text messages sending (using bidirectional-communication service behind the scene)
+
+# Image
+
+![conversation](conversations.png)
