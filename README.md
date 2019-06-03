@@ -31,6 +31,7 @@ real-time chat app demonstrating some architectural, testing, readability, clean
 
 # Todo
 
+- [ ] Making a better frontend-client-app (maybe an Android app?) instead of the current "html" and "cli" versions, to better show the services functionalities.
 - [ ] Enhancing security between services
 - [ ] Enhancing security between messages (sent/receive)
 - [ ] Scripts for building kubernetes infrastcuture automated
