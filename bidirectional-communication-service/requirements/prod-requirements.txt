@@ -2,4 +2,4 @@ dpcontracts==0.6.0
 requests==2.22.0
 Flask==1.0.3
 Flask-SocketIO==4.0.0
-eventlet==0.25.0
+eventlet==0.31.0
